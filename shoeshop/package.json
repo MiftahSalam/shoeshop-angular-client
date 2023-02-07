@@ -1,6 +1,7 @@
 {
   "name": "shoeshop",
   "version": "0.0.0",
+  "proxy": "http://localhost:8001/graphql",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -18,6 +19,9 @@
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
+    "@apollo/client": "^3.6.9",
+    "apollo-angular": "^4.2.0",
+    "graphql": "^16.6.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
