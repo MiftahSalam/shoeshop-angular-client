@@ -31,7 +31,7 @@ export class ShopComponent implements OnInit /*, OnDestroy*/ {
   ngOnInit(): void {
     this.loading = false; //temporary
     this.productService
-      .getProduct({ keyword: '', limit: 10, page: 0 })
+      .getProducts({ keyword: '', limit: 10, page: 0 })
       // .pipe(
       //   catchError((err) => {
       //     console.error('errrrroooorrrr', err);

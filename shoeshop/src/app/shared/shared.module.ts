@@ -7,6 +7,7 @@ import { FooterComponent } from './component/footer/footer.component';
 import { RatingComponent } from './component/rating/rating.component';
 import { LoadingComponent } from './component/loading/loading.component';
 import { MessageComponent } from './component/message/message.component';
+import { NotFoundComponent } from './component/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MessageComponent } from './component/message/message.component';
     RatingComponent,
     LoadingComponent,
     MessageComponent,
+    NotFoundComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [

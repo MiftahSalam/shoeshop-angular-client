@@ -8,6 +8,7 @@ import {
   Search,
   GET_PRODUCTS_ALL_FIELDS,
   Review,
+  GET_PRODUCT,
 } from '../../../model/graphql/product.graphql';
 import { User } from 'src/app/core/model/graphql/user.graphql';
 
@@ -17,7 +18,25 @@ import { User } from 'src/app/core/model/graphql/user.graphql';
 export class ProductService {
   constructor(private apollo: Apollo) {}
 
-  getProduct(filter: Search): Observable<Product[] | null> {
+  getProduct(id: string): Observable<Product | null> {
+    return from(
+      this.apollo.query({
+        query: GET_PRODUCT,
+        variables: { id: id },
+        errorPolicy: 'all',
+      })
+    ).pipe(
+      map(({ loading, data }: any) => {
+        const value: Product = data.getProduct as Product;
+
+        console.log(data);
+
+        return value;
+      })
+    );
+  }
+
+  getProducts(filter: Search): Observable<Product[] | null> {
     return from(
       this.apollo.query({
         query: GET_PRODUCTS_ALL_FIELDS,

@@ -7,6 +7,7 @@ import { CallToActionComponent } from './component/call-to-action/call-to-action
 import { ContactInfoComponent } from './component/contact-info/contact-info.component';
 import { ShopComponent } from './component/shop/shop.component';
 import { RouterModule } from '@angular/router';
+import { HomePageRoutingModule } from './home-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import { RouterModule } from '@angular/router';
     ContactInfoComponent,
     ShopComponent,
   ],
-  imports: [CommonModule, RouterModule, SharedModule],
+  imports: [CommonModule, RouterModule, SharedModule, HomePageRoutingModule],
   exports: [HomeComponent],
 })
 export class HomeModule {}

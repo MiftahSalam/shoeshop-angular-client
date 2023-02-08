@@ -20,22 +20,49 @@ export interface Product {
 }
 
 export interface Review {
+  id: string;
   rating: number;
   comment: string;
   user: User;
+  created_date: string;
 }
+
+const PRODUCT_COMMON_FIELDS = gql`
+  fragment COMMON_FIELDS on Product {
+    id
+    name
+    imageUrl
+    rating
+    price
+    numReviews
+  }
+`;
+
+export const GET_PRODUCT = gql`
+  query product($id: ID!) {
+    getProduct(id: $id) {
+      ...COMMON_FIELDS
+      description
+      countInStock
+      reviews {
+        id
+        rating
+        comment
+        user {
+          name
+        }
+        created_date
+      }
+    }
+  }
+  ${PRODUCT_COMMON_FIELDS}
+`;
 
 export const GET_PRODUCTS_ALL_FIELDS = gql`
   query products($filter: Search) {
     getProducts(input: $filter) {
-      id
-      name
-      description
-      imageUrl
-      rating
-      price
-      numReviews
-      countInStock
+      ...COMMON_FIELDS
     }
   }
+  ${PRODUCT_COMMON_FIELDS}
 `;
