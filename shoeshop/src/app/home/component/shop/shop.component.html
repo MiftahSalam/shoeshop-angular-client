@@ -7,7 +7,7 @@
             <app-loading></app-loading>
           </div>
           <div *ngIf="currentError.message">
-            <app-message [variant]="'alert-info mt-5'">{{
+            <app-message [variant]="'alert-danger mt-5'">{{
               currentError.message
             }}</app-message>
           </div>
@@ -15,30 +15,7 @@
             class="shop col-lg-4 col-md-6 col-sm-6"
             *ngFor="let item of products; trackBy: trackByFn"
           >
-            <div class="border-product">
-              <a
-                [routerLink]="['products', item.id]"
-                routerLinkActive="router-link-active"
-              >
-                <div class="shopBack">
-                  <img src="{{ item.imageUrl }}" alt="{{ item.imageUrl }}" />
-                </div>
-              </a>
-              <div class="shoptext">
-                <p>
-                  <a
-                    [routerLink]="['products', item.id]"
-                    routerLinkActive="router-link-active"
-                    >{{ item.name }}</a
-                  >
-                </p>
-                <app-rating
-                  [value]="item.rating"
-                  [text]="item.numReviews"
-                ></app-rating>
-                <h3>${{ item.price }}</h3>
-              </div>
-            </div>
+            <app-product-list [product]="item"></app-product-list>
           </div>
         </div>
       </div>

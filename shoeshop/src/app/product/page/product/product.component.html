@@ -3,7 +3,7 @@
     <app-loading></app-loading>
   </div>
   <div *ngIf="currentError.message">
-    <app-message [variant]="'alert-info mt-5'">{{
+    <app-message [variant]="'alert-danger mt-5'">{{
       currentError.message
     }}</app-message>
   </div>
@@ -15,97 +15,9 @@
     </div>
     <div class="col-md-6">
       <div class="product-dt1">
-        <div class="product-info">
-          <div class="product-name">{{ product?.name }}</div>
-        </div>
-        <p>{{ product?.description }}</p>
-        <div class="product-count col-lg-7">
-          <div
-            class="flex-box d-flex justify-content-between align-items-center"
-          >
-            <h6>Price</h6>
-            <span>$ {{ product?.price }}</span>
-          </div>
-          <div
-            class="flex-box d-flex justify-content-between align-items-center"
-          >
-            <h6>Status</h6>
-            <span *ngIf="product && product.countInStock > 0; else nostock"
-              >In Stock</span
-            >
-            <ng-template #nostock><span>unavailable</span></ng-template>
-          </div>
-          <div
-            class="flex-box d-flex justify-content-between align-items-center"
-          >
-            <h6>Reviews</h6>
-            <app-rating
-              [value]="product?.rating || 0"
-              [text]="product?.numReviews || 0"
-            ></app-rating>
-          </div>
-          <div
-            *ngIf="product && product.countInStock > 0"
-            class="flex-box d-flex justify-content-between align-items"
-          >
-            <h6>Quantity</h6>
-            <select
-              type="number"
-              [(ngModel)]="quantity"
-              (ngModelChange)="setQuantity()"
-            >
-              <option
-                *ngFor="
-                  let val of [].constructor(product.countInStock);
-                  let i = index
-                "
-                [ngValue]="i + 1"
-              >
-                {{ i + 1 }}
-              </option>
-            </select>
-          </div>
-          <button class="round-black-btn">Add To Cart</button>
-        </div>
+        <app-product-info [product]="product"></app-product-info>
       </div>
     </div>
   </div>
-  <div class="row my-5">
-    <div class="col-md-6">
-      <h6 class="mb-3">REVIEWS</h6>
-      <app-message
-        *ngIf="
-          product && product.reviews && product.reviews.length < 1;
-          else review
-        "
-        [variant]="'alert-info mt-3'"
-        >No Reviews</app-message
-      >
-
-      <ng-template #review>
-        <div
-          *ngFor="let item of product?.reviews; trackBy: trackByFn"
-          class="mb-5 mb-md-3 bg-light p-3 shadow-sm rounded"
-        >
-          <strong>{{ item.user.name }}</strong>
-          <app-rating [value]="item.rating"></app-rating>
-          <span>{{ convertTime(item.created_date) }}</span>
-          <div className="alert alert-info mt-3">
-            {{ item.comment }}
-          </div>
-        </div>
-      </ng-template>
-    </div>
-    <div class="col-md-6">
-      <h6>WRITE A CUSTOMER REVIEW</h6>
-      <div class="my-4">
-        <app-loading *ngIf="loadingAddReview"></app-loading>
-        <app-message
-          *ngIf="currentErrorAddReview.message"
-          [variant]="'alert-danger'"
-          >{{ currentErrorAddReview.message }}</app-message
-        >
-      </div>
-    </div>
-  </div>
+  <app-review [product]="product"></app-review>
 </div>

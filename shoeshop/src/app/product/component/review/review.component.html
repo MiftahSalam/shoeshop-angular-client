@@ -1,0 +1,38 @@
+<div class="row my-5">
+  <div class="col-md-6">
+    <h6 class="mb-3">REVIEWS</h6>
+    <app-message
+      *ngIf="
+        product && product.reviews && product.reviews.length < 1;
+        else review
+      "
+      [variant]="'alert-info mt-3'"
+      >No Reviews</app-message
+    >
+
+    <ng-template #review>
+      <div
+        *ngFor="let item of product?.reviews; trackBy: trackByFn"
+        class="mb-5 mb-md-3 bg-light p-3 shadow-sm rounded"
+      >
+        <strong>{{ item.user.name }}</strong>
+        <app-rating [value]="item.rating"></app-rating>
+        <span>{{ convertTime(item.created_date) }}</span>
+        <div className="alert alert-info mt-3">
+          {{ item.comment }}
+        </div>
+      </div>
+    </ng-template>
+  </div>
+  <div class="col-md-6">
+    <h6>WRITE A CUSTOMER REVIEW</h6>
+    <div class="my-4">
+      <app-loading *ngIf="loadingAddReview"></app-loading>
+      <app-message
+        *ngIf="currentErrorAddReview.message"
+        [variant]="'alert-danger'"
+        >{{ currentErrorAddReview.message }}</app-message
+      >
+    </div>
+  </div>
+</div>

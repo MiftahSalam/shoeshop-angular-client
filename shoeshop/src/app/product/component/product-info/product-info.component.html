@@ -1,0 +1,43 @@
+<div class="product-info">
+  <div class="product-name">{{ product?.name }}</div>
+</div>
+<p>{{ product?.description }}</p>
+<div class="product-count col-lg-7">
+  <div class="flex-box d-flex justify-content-between align-items-center">
+    <h6>Price</h6>
+    <span>$ {{ product?.price }}</span>
+  </div>
+  <div class="flex-box d-flex justify-content-between align-items-center">
+    <h6>Status</h6>
+    <span *ngIf="product && product.countInStock > 0; else nostock"
+      >In Stock</span
+    >
+    <ng-template #nostock><span>unavailable</span></ng-template>
+  </div>
+  <div class="flex-box d-flex justify-content-between align-items-center">
+    <h6>Reviews</h6>
+    <app-rating
+      [value]="product?.rating || 0"
+      [text]="product?.numReviews || 0"
+    ></app-rating>
+  </div>
+  <div
+    *ngIf="product && product.countInStock > 0"
+    class="flex-box d-flex justify-content-between align-items"
+  >
+    <h6>Quantity</h6>
+    <select
+      type="number"
+      [(ngModel)]="quantity"
+      (ngModelChange)="setQuantity()"
+    >
+      <option
+        *ngFor="let val of [].constructor(product.countInStock); let i = index"
+        [ngValue]="i + 1"
+      >
+        {{ i + 1 }}
+      </option>
+    </select>
+  </div>
+  <button class="round-black-btn">Add To Cart</button>
+</div>

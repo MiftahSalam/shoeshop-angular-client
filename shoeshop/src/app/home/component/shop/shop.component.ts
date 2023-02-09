@@ -29,7 +29,7 @@ export class ShopComponent implements OnInit /*, OnDestroy*/ {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.loading = false; //temporary
+    this.loading = true;
     this.productService
       .getProducts({ keyword: '', limit: 10, page: 0 })
       // .pipe(
@@ -61,10 +61,14 @@ export class ShopComponent implements OnInit /*, OnDestroy*/ {
           this.products = data;
         },
         (err) => {
-          this.currentError = err;
           console.error('currentError', this.currentError.message);
+
+          this.currentError = err;
+          this.loading = false;
         },
-        () => {}
+        () => {
+          this.loading = false;
+        }
       );
     // this.apollo
     //   .watchQuery<any>({ query: GET_PRODUCTS_ALL_FIELDS })
