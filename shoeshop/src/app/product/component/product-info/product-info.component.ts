@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Item } from 'src/app/core/model/graphql/cart.graphql';
 import { Product } from 'src/app/core/model/graphql/product.graphql';
+import { CartService } from 'src/app/core/service/graphql/cart/cart.service';
 
 @Component({
   selector: 'app-product-info',
@@ -10,8 +13,24 @@ export class ProductInfoComponent implements OnInit {
 
   quantity: number = 1;
 
+  constructor(private router: Router, private cartService: CartService) {}
+
   ngOnInit(): void {
     this.quantity = 1; //temporary. must get from cart
+  }
+
+  addToCart() {
+    const item: Item = {
+      name: this.product!.name,
+      price: this.product!.price * this.quantity,
+      product: this.product!,
+      quantity: this.quantity,
+    };
+
+    console.log('ProductInfoComponent addToCart', item);
+
+    this.cartService.addCartItem(item);
+    this.router.navigate(['cart']);
   }
 
   setQuantity() {

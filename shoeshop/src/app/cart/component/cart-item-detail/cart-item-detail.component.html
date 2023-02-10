@@ -1,0 +1,43 @@
+<div
+  (click)="removeFromCartHandler(cartItem.product.id)"
+  class="remove-button d-flex justify-content-center align-items-center"
+>
+  <i class="fas fa-times"></i>
+</div>
+<div class="cart-image col-md-3">
+  <img [src]="cartItem.product.imageUrl" [alt]="cartItem.product.name" />
+</div>
+<div class="cart-text col-md-5 d-flex align-items-center">
+  <a
+    [routerLink]="['products', cartItem.product.id]"
+    routerLinkActive="router-link-active"
+    ><h4>{{ cartItem.name }}</h4></a
+  >
+</div>
+<div
+  class="cart-qty col-md-2 col-sm-5 mt-md-5 mt-3 mt-md-0 d-flex flex-column justify-content"
+>
+  <h6>QUANTITY</h6>
+  <select
+    type="number"
+    [(ngModel)]="quantity"
+    (ngModelChange)="updateQuantity(cartItem.product.id)"
+  >
+    <option
+      *ngFor="
+        let val of [].constructor(cartItem.product.countInStock);
+        let i = index
+      "
+      [ngValue]="i + 1"
+    >
+      {{ i + 1 }}
+    </option>
+  </select>
+</div>
+<div
+  class="cart-price col-md-2 col-sm-5 mt-md-5 mt-3 mt-md-0 d-flex flex-column justify-content"
+>
+  <!-- <div class="cart-price col-md-2 mt-3 mt-md-0 align-items-sm-end"> -->
+  <h6>Price</h6>
+  <h4>${{ cartItem.price }}</h4>
+</div>

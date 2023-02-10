@@ -1,0 +1,23 @@
+<div class="container">
+  <div
+    *ngIf="!cartItems || cartItems && cartItems.length === 0;else cartDetail"
+    class="alert alert-info text-center mt-3"
+  >
+    Your cart is empty
+    <a
+      [routerLink]="['/']"
+      routerLinkActive="router-link-active"
+      class="btn btn-success mx-5 px-5 py-3"
+      [ngStyle]="{ fontSize: '12px' }"
+    >
+      SHOPING NOW
+    </a>
+  </div>
+  <ng-template #cartDetail
+    ><app-cart-items
+      [cartItems]="cartItems"
+      (removeItemEvent)="removeItem($event)"
+      (updateItemEvent)="updateItem($event)"
+    ></app-cart-items>
+  </ng-template>
+</div>
