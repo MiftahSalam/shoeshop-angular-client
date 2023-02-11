@@ -48,10 +48,10 @@ export class ProductService {
         const value: Product[] = data.getProducts as Product[];
         const products: Product[] = new Array<Product>();
 
-        console.log(data);
+        // console.log(data);
 
         for (const product of value) {
-          console.log(product);
+          // console.log(product);
           // const user: User = {
           //   createdAt: product.reviews,
           //   email: 'sdfsdf',

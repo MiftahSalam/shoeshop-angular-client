@@ -8,6 +8,7 @@ import { RatingComponent } from './component/rating/rating.component';
 import { LoadingComponent } from './component/loading/loading.component';
 import { MessageComponent } from './component/message/message.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import { AnnouncementComponent } from './component/announcement/announcement.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     LoadingComponent,
     MessageComponent,
     NotFoundComponent,
+    AnnouncementComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -25,6 +27,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     RatingComponent,
     LoadingComponent,
     MessageComponent,
+    AnnouncementComponent,
   ],
 })
 export class SharedModule {}

@@ -6,9 +6,16 @@ import { RouterModule } from '@angular/router';
 import { CartPageRoutingModule } from './cart-routing.module';
 import { CartItemDetailComponent } from './component/cart-item-detail/cart-item-detail.component';
 import { CartItemsComponent } from './component/cart-items/cart-items.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [CartComponent, CartItemDetailComponent, CartItemsComponent],
-  imports: [CommonModule, RouterModule, FormsModule, CartPageRoutingModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    CartPageRoutingModule,
+    SharedModule,
+  ],
 })
 export class CartModule {}
