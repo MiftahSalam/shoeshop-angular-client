@@ -6,9 +6,10 @@ import { LoginComponent } from './page/login/login.component';
 import { RouterModule } from '@angular/router';
 import { AuthPageRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { RegisterComponent } from './page/register/register.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     RouterModule,

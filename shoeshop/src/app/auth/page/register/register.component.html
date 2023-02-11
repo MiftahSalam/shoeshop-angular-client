@@ -1,0 +1,42 @@
+<div
+  class="container d-flex flex-column justify-content-center align-items-center login-center"
+>
+  <div *ngIf="loading">
+    <app-loading></app-loading>
+  </div>
+  <div *ngIf="currentError.message">
+    <app-message [variant]="'alert-danger mt-5'">{{
+      currentError.message
+    }}</app-message>
+  </div>
+  <form
+    [ariaDisabled]="loading"
+    class="Login col-md-8 col-1g-4 col-11"
+    (submit)="submitHandler()"
+  >
+    <input
+      type="text"
+      placeholder="Username"
+      [(ngModel)]="username"
+      name="username"
+    />
+    <input type="email" placeholder="Email" [(ngModel)]="email" name="email" />
+    <input
+      type="password"
+      placeholder="Password"
+      [(ngModel)]="password"
+      name="password"
+    />
+
+    <button type="submit">Register</button>
+    <p>
+      <a
+        [routerLink]="['/auth', 'login']"
+        [queryParams]="redirectUrl"
+        routerLinkActive="router-link-active"
+      >
+        I Have Account <strong>Login</strong>
+      </a>
+    </p>
+  </form>
+</div>

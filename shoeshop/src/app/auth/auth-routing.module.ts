@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ROUTE_AUTH_LOGIN } from '../shared/constant';
+import { ROUTE_AUTH_LOGIN, ROUTE_AUTH_REGISTER } from '../shared/constant';
 
 import { LoginComponent } from './page/login/login.component';
+import { RegisterComponent } from './page/register/register.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
     path: ROUTE_AUTH_LOGIN,
     pathMatch: 'prefix',
     component: LoginComponent,
+  },
+  {
+    path: ROUTE_AUTH_REGISTER,
+    pathMatch: 'prefix',
+    component: RegisterComponent,
   },
 ];
 

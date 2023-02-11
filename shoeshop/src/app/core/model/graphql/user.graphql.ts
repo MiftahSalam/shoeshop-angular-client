@@ -14,10 +14,29 @@ export interface Login {
   password: string;
 }
 
+export interface Register {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export const USER_LOGIN = gql`
   query userLogin($data: Login!) {
     login(input: $data) {
+      id
       name
+      email
+      token
+      isAdmin
+      createdAt
+    }
+  }
+`;
+
+export const USER_REGISTER = gql`
+  mutation register($data: Register!) {
+    userRegister(input: $data) {
+      id
       name
       email
       token
