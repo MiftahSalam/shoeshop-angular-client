@@ -17,7 +17,6 @@ import { ProductService } from 'src/app/core/service/graphql/product/product.ser
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css'],
 })
 export class ShopComponent implements OnInit /*, OnDestroy*/ {
   // private querySubscription: Subscription = new Subscription();

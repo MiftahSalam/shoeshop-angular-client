@@ -1,5 +1,40 @@
 <div class="container">
   <div class="section">
+    <div class="mobile-header">
+      <div class="row">
+        <div class="col-12 d-flex align-items-center">
+          <form class="input-group">
+            <input
+              type="search"
+              class="form-control rounded search"
+              placeholder="search"
+            />
+            <button type="submit" class="search-button">search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="pc-header">
+      <div class="row">
+        <div class="col-md-3 col-4 d-flex align-items-center">
+          <a class="navbar-brand" [routerLink]="['/']">
+            <img alt="logo" src="assets/images/logo.png"
+          /></a>
+        </div>
+        <div class="col-md-6 col-8 d-flex align-items-center">
+          <form class="input-group">
+            <input
+              type="search"
+              class="form-control rounded search"
+              placeholder="Search"
+            />
+            <button type="submit" class="search-button">search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section">
     <div class="row">
       <div class="col-lg-12 col-md-12 article">
         <div class="shopcontainer row">

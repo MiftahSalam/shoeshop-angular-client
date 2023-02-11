@@ -1,6 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './shared/component/not-found/not-found.component';
+import {
+  ROUTE_AUTH,
+  ROUTE_CART,
+  ROUTE_HOME,
+  ROUTE_PRODUCT,
+} from './shared/constant';
 
 const routes: Routes = [
   {
@@ -8,18 +14,22 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'home',
+    path: ROUTE_HOME,
     redirectTo: '',
     pathMatch: 'full',
   },
   {
-    path: 'products',
+    path: ROUTE_PRODUCT,
     loadChildren: () =>
       import('./product/product.module').then((m) => m.ProductModule),
   },
   {
-    path: 'cart',
+    path: ROUTE_CART,
     loadChildren: () => import('./cart/cart.module').then((m) => m.CartModule),
+  },
+  {
+    path: ROUTE_AUTH,
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: '**',

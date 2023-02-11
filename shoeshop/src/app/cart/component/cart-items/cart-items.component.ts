@@ -8,8 +8,10 @@ import {
   OnInit,
   OnChanges,
 } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Item, UpdateItem } from 'src/app/core/model/graphql/cart.graphql';
+import { ROUTE_AUTH, ROUTE_AUTH_LOGIN } from 'src/app/shared/constant';
 
 @Component({
   selector: 'app-cart-items',
@@ -23,7 +25,7 @@ export class CartItemsComponent implements OnInit, OnChanges {
 
   total: number = 0;
 
-  constructor(private ref: ChangeDetectorRef) {}
+  constructor(private ref: ChangeDetectorRef, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -33,7 +35,11 @@ export class CartItemsComponent implements OnInit, OnChanges {
       : 0;
   }
 
-  checkoutHandler() {}
+  checkoutHandler() {
+    this.router.navigateByUrl(
+      ROUTE_AUTH + '/' + ROUTE_AUTH_LOGIN + '?redirect=shipping'
+    );
+  }
 
   removeFromCartHandler(id: string) {
     console.log('CartItemDetailComponent-removeFromCartHandler id', id);

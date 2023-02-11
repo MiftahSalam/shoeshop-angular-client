@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { Item, UpdateItem } from 'src/app/core/model/graphql/cart.graphql';
+import { STORE_CART_ITEMS_KEY } from 'src/app/shared/constant';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class CartService {
   constructor() {}
 
   getAllAvailableCartItems(): Item[] {
-    const storedCartItemsStr = localStorage.getItem('cartItems');
+    const storedCartItemsStr = localStorage.getItem(STORE_CART_ITEMS_KEY);
     this.storedCartItems.next(
       storedCartItemsStr && JSON.parse(storedCartItemsStr)
     );
@@ -35,7 +36,7 @@ export class CartService {
     }
 
     if (curItemsCount !== cartItems.length) {
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      localStorage.setItem(STORE_CART_ITEMS_KEY, JSON.stringify(cartItems));
       this.storedCartItems.next(cartItems);
     }
   }
@@ -48,7 +49,7 @@ export class CartService {
     }
 
     if (prevItemsCount !== cartItems.length) {
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      localStorage.setItem(STORE_CART_ITEMS_KEY, JSON.stringify(cartItems));
       this.storedCartItems.next(cartItems);
     }
   }
@@ -79,7 +80,7 @@ export class CartService {
     // );
 
     if (curItemsCount === cartItems.length) {
-      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+      localStorage.setItem(STORE_CART_ITEMS_KEY, JSON.stringify(cartItems));
       this.storedCartItems.next(cartItems);
     }
   }

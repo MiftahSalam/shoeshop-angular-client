@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Item } from 'src/app/core/model/graphql/cart.graphql';
 import { Product } from 'src/app/core/model/graphql/product.graphql';
 import { CartService } from 'src/app/core/service/graphql/cart/cart.service';
+import { ROUTE_CART } from 'src/app/shared/constant';
 
 @Component({
   selector: 'app-product-info',
@@ -30,7 +31,7 @@ export class ProductInfoComponent implements OnInit {
     console.log('ProductInfoComponent addToCart', item);
 
     this.cartService.addCartItem(item);
-    this.router.navigate(['cart']);
+    this.router.navigate([ROUTE_CART]);
   }
 
   setQuantity() {
