@@ -3,6 +3,7 @@ import { Apollo } from 'apollo-angular';
 import { Observable, from, map } from 'rxjs';
 
 import {
+  GET_USER_PROFILE,
   Login,
   Register,
   User,
@@ -26,10 +27,7 @@ export class UserService {
         })
         .pipe(
           map(({ loading, data }: any) => {
-            console.log(data);
-
             const value: User = data.login as User;
-
             return value;
           })
         )
@@ -45,10 +43,24 @@ export class UserService {
         })
         .pipe(
           map(({ loading, data }: any) => {
+            const value: User = data.userRegister as User;
+            return value;
+          })
+        )
+    );
+  }
+
+  getUserProfile(): Observable<User> {
+    return from(
+      this.apollo
+        .query({
+          query: GET_USER_PROFILE,
+        })
+        .pipe(
+          map(({ loading, data }: any) => {
             console.log(data);
 
-            const value: User = data.userRegister as User;
-
+            const value: User = data.getUserProfile as User;
             return value;
           })
         )

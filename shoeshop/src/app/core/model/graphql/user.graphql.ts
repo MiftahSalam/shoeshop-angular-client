@@ -45,3 +45,16 @@ export const USER_REGISTER = gql`
     }
   }
 `;
+
+export const GET_USER_PROFILE = gql`
+  query {
+    getUserProfile {
+      id
+      name
+      email
+      token
+      isAdmin
+      createdAt
+    }
+  }
+`;

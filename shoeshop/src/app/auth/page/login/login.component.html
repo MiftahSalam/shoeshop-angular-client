@@ -1,14 +1,10 @@
 <div
   class="container d-flex flex-column justify-content-center align-items-center login-center"
 >
-  <div *ngIf="loading">
-    <app-loading></app-loading>
-  </div>
-  <div *ngIf="currentError.message">
-    <app-message [variant]="'alert-danger mt-5'">{{
-      currentError.message
-    }}</app-message>
-  </div>
+  <app-loading *ngIf="loading"></app-loading>
+  <app-message *ngIf="currentError.message" [variant]="'alert-danger mt-5'">{{
+    currentError.message
+  }}</app-message>
   <form class="Login col-md-8 col-1g-4 col-11" (submit)="submitHandler()">
     <input type="email" placeholder="Email" [(ngModel)]="email" name="email" />
     <input

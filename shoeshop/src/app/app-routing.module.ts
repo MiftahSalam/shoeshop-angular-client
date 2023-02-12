@@ -6,6 +6,7 @@ import {
   ROUTE_CART,
   ROUTE_HOME,
   ROUTE_PRODUCT,
+  ROUTE_PROFILE,
 } from './shared/constant';
 
 const routes: Routes = [
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: ROUTE_AUTH,
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: ROUTE_PROFILE,
+    loadChildren: () =>
+      import('./profile/profile.module').then((m) => m.ProfileModule),
   },
   {
     path: '**',

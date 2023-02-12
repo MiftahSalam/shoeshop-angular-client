@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from 'src/app/core/model/graphql/user.graphql';
 import { AuthService } from 'src/app/core/service/auth/auth.service';
@@ -15,6 +16,7 @@ export class HeaderComponent implements OnInit /*, OnChanges*/ {
   cartsCount: number = 0;
 
   constructor(
+    private router: Router,
     private authService: AuthService,
     private cartService: CartService
   ) {}
@@ -33,5 +35,8 @@ export class HeaderComponent implements OnInit /*, OnChanges*/ {
   //   this.cartsCount = curCart && curCart.length;
   // }
 
-  logoutHandler() {}
+  logoutHandler() {
+    this.authService.resetAuth();
+    window.location.reload();
+  }
 }

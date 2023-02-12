@@ -7,3 +7,4 @@ export const ROUTE_CART = 'cart';
 export const ROUTE_AUTH = 'auth';
 export const ROUTE_AUTH_LOGIN = 'login';
 export const ROUTE_AUTH_REGISTER = 'register';
+export const ROUTE_PROFILE = 'profile';
