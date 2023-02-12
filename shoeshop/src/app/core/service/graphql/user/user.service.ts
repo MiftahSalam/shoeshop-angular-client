@@ -6,6 +6,8 @@ import {
   GET_USER_PROFILE,
   Login,
   Register,
+  UpdateProfile,
+  UPDATE_USER_PROFILE,
   User,
   USER_LOGIN,
   USER_REGISTER,
@@ -61,6 +63,24 @@ export class UserService {
             console.log(data);
 
             const value: User = data.getUserProfile as User;
+            return value;
+          })
+        )
+    );
+  }
+
+  updateUserProfile(input: UpdateProfile): Observable<User> {
+    return from(
+      this.apollo
+        .mutate({
+          mutation: UPDATE_USER_PROFILE,
+          variables: { data: input },
+        })
+        .pipe(
+          map(({ loading, data }: any) => {
+            console.log(data);
+
+            const value: User = data.updateUserProfile as User;
             return value;
           })
         )

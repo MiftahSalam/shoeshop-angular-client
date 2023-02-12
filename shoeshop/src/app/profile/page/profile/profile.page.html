@@ -1,1 +1,82 @@
-<p>profile works!</p>
+<app-header [hideSearch]="true"></app-header>
+
+<div class="container mt-lg-5 mt-5">
+  <div class="row align-items-start">
+    <div class="col-lg-4 p-0 shadow">
+      <div class="author-card pb-@ pb-md-3">
+        <div class="author-card-cover"></div>
+        <div class="author-card-profile row">
+          <div class="author-card-avatar col-md-5">
+            <img src="assets/images/user.png" alt="userprofileimage" />
+          </div>
+          <div class="author-card-details col-md-7">
+            <h5 class="author-card-name mb-2">
+              <strong>{{currentUser.name}}</strong>
+            </h5>
+            <span class="author-card-position">
+              {{ currentUser.createdAt | momentDate:'LL' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="wizard pt-3">
+        <div class="d-flex align-items-start">
+          <div
+            class="nav align-items-start flex-column col-12 nav-pills me-3"
+            id="v-pills-tab"
+            role="tablist"
+            aria-orientation="vertical"
+          >
+            <button
+              class="nav-link active"
+              id="v-pills-home-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-home"
+              type="button"
+              role="tab"
+              aria-controls="v-pills-home"
+              aria-selected="true"
+            >
+              Profile Settings
+            </button>
+            <button
+              class="nav-link d-flex justify-content-between"
+              id="v-pills-profile-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#v-pills-profile"
+              type="button"
+              role="tab"
+              aria-controls="v-pills-profile"
+              aria-selected="false"
+            >
+              Orders List
+              <span class="badge2">4</span>
+              <!-- <span class="badge2">{orders ? orders.length : 0}</span> -->
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content col-lg-8 pb-5 pt-lg-0 pt-3" id="v-pills-tabContent">
+      <div
+        class="tab-pane fade show active"
+        id="v-pills-home"
+        role="tabpanel"
+        aria-labelledby="v-pills-home"
+      >
+        <app-settings [currentUser]="currentUser"></app-settings>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="v-pills-profile"
+        role="tabpanel"
+        aria-labelledby="v-pills-profile"
+      >
+        <!-- <Orders orders={orders} loading={loading} error={error} /> -->
+        <app-orderlist></app-orderlist>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<app-message *ngIf="currentError.message" [variant]="'alert-danger'">{{
+  currentError.message
+}}</app-message>
+<app-loading *ngIf="updateLoading"></app-loading>
+<form
+  [formGroup]="settingsForm"
+  class="row form-container"
+  (ngSubmit)="submitHandler(settingsForm.value)"
+>
+  <div class="col-md-6">
+    <div class="form">
+      <label htmlFor="account-fn">UserName</label>
+      <input class="form-control" type="text" formControlName="name" />
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form">
+      <label htmlFor="account-email">E-mail Address</label>
+      <input class="form-control" type="email" formControlName="email" />
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form">
+      <label htmlFor="account-pass">New Password</label>
+      <input class="form-control" type="password" formControlName="password" />
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="form">
+      <label htmlFor="account-confirm-pass">Confirm Password</label>
+      <input class="form-control" type="password" formControlName="password" />
+    </div>
+  </div>
+  <button type="submit">Update Profile</button>
+</form>

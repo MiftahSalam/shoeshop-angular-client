@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,9 +15,16 @@ import { AuthInterceptor } from './core/interceptor/auth/auth.interceptor';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
+    ToastrModule.forRoot({
+      autoDismiss: true,
+      closeButton: true,
+      timeOut: 5000,
+      progressBar: true,
+    }),
     HomeModule,
     SharedModule,
   ],

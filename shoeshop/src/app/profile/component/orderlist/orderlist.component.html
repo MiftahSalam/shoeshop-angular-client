@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center align-items-center flex-column">
+  <app-loading *ngIf="loading"></app-loading>
+  <app-message *ngIf="currentError.message" [variant]="'alert-danger'">{{
+    currentError.message
+  }}</app-message>
+  <div
+    *ngIf="orders.length === 0; else orderlist"
+    class="col-12 alert alert-info text-center mt-3"
+  >
+    No Orders
+    <a
+      class="btn btn-success mx-2 px-3 py-2"
+      [routerLink]="['/']"
+      routerLinkActive="router-link-active"
+      [ngStyle]="{ fontSize: '12px' }"
+    >
+      Start Shopping
+    </a>
+  </div>
+  <ng-template #orderlist> </ng-template>
+</div>
