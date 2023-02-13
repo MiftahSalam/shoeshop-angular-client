@@ -1,25 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  AbstractControl,
-  ValidationErrors,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ErrorModel } from 'src/app/core/model/error';
+import { ErrorModel, getFormValidationErrors } from 'src/app/core/model/error';
 import { OrderService } from 'src/app/core/service/graphql/order/order.service';
 import { ROUTE_ORDER, ROUTE_ORDER_PAYMENT } from 'src/app/shared/constant';
-
-export interface AllValidationErrors {
-  control_name: string;
-  error_name: string;
-  error_value: any;
-}
-
-export interface FormGroupControls {
-  [key: string]: AbstractControl;
-}
 
 @Component({
   selector: 'app-shipping',
@@ -49,9 +33,7 @@ export class ShippingComponent implements OnInit {
     console.log('SettingsComponent-submitHandler data', data);
 
     if (this.formShipping.invalid) {
-      const allErrors = this.getFormValidationErrors(
-        this.formShipping.controls
-      );
+      const allErrors = getFormValidationErrors(this.formShipping.controls);
       if (allErrors.length > 0) {
         this.currentError.message = `${allErrors[0].control_name} ${allErrors[0].error_name}`;
       }
@@ -64,28 +46,5 @@ export class ShippingComponent implements OnInit {
       });
       this.router.navigate([ROUTE_ORDER, ROUTE_ORDER_PAYMENT]);
     }
-  }
-
-  private getFormValidationErrors(
-    controls: FormGroupControls
-  ): AllValidationErrors[] {
-    let errors: AllValidationErrors[] = [];
-    Object.keys(controls).forEach((key) => {
-      const control = controls[key];
-      if (control instanceof FormGroup) {
-        errors = errors.concat(this.getFormValidationErrors(control.controls));
-      }
-      const controlErrors: ValidationErrors | null = controls[key].errors;
-      if (controlErrors !== null) {
-        Object.keys(controlErrors).forEach((keyError) => {
-          errors.push({
-            control_name: key,
-            error_name: keyError,
-            error_value: controlErrors[keyError],
-          });
-        });
-      }
-    });
-    return errors;
   }
 }
