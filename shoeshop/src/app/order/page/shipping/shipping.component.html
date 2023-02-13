@@ -1,0 +1,26 @@
+<app-header [hideSearch]="true"></app-header>
+<div
+  class="container d-flex flex-column justify-content-center align-items-center login-center"
+>
+  <app-message *ngIf="currentError.message" [variant]="'alert-danger'">{{
+    currentError.message
+  }}</app-message>
+  <form
+    [formGroup]="formShipping"
+    class="Login col-md-8 col-1g-4 col-11"
+    (ngSubmit)="submitHandler(formShipping.value)"
+  >
+    <h6>DELIVERY ADDRESS</h6>
+    <input type="text" placeholder="Enter address" formControlName="address" />
+    <input type="text" placeholder="Enter city" formControlName="city" />
+    <input
+      type="text"
+      placeholder="Enter postal code"
+      formControlName="postalCode"
+    />
+    <input type="text" placeholder="Enter country" formControlName="country" />
+    <button type="submit">
+      <a class="text-white"> Continue </a>
+    </button>
+  </form>
+</div>

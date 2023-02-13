@@ -8,3 +8,6 @@ export const ROUTE_AUTH = 'auth';
 export const ROUTE_AUTH_LOGIN = 'login';
 export const ROUTE_AUTH_REGISTER = 'register';
 export const ROUTE_PROFILE = 'profile';
+export const ROUTE_ORDER = 'order';
+export const ROUTE_ORDER_SHIPPING = 'shipping';
+export const ROUTE_ORDER_PAYMENT = 'payment';

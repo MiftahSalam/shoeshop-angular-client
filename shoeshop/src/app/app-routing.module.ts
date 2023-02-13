@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/guard/auth/auth.guard';
 import { NotFoundComponent } from './shared/component/not-found/not-found.component';
 import {
   ROUTE_AUTH,
   ROUTE_CART,
   ROUTE_HOME,
+  ROUTE_ORDER,
   ROUTE_PRODUCT,
   ROUTE_PROFILE,
 } from './shared/constant';
@@ -36,6 +38,12 @@ const routes: Routes = [
     path: ROUTE_PROFILE,
     loadChildren: () =>
       import('./profile/profile.module').then((m) => m.ProfileModule),
+  },
+  {
+    path: ROUTE_ORDER,
+    loadChildren: () =>
+      import('./order/order.module').then((m) => m.OrderModule),
+    canActivate: [AuthGuard],
   },
   {
     path: '**',
