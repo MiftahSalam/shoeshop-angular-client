@@ -44,5 +44,5 @@
         : 'far fa-star'
     "
   ></i>
-  <span>{{ text }} Reviews</span>
+  <span *ngIf="text !== null">{{ text }} Reviews</span>
 </div>

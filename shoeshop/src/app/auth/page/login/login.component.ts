@@ -60,7 +60,10 @@ export class LoginComponent implements OnInit {
       if (Object.keys(this.redirectUrl).length === 0) {
         this.router.navigateByUrl('/');
       } else {
-        this.router.navigateByUrl(this.redirectUrl['redirect']);
+        this.router.navigateByUrl(this.redirectUrl['redirect']).catch((err) => {
+          console.log('LoginComponent-nextNavigation err', err);
+          this.router.navigateByUrl('/not-found');
+        });
       }
     }
   }

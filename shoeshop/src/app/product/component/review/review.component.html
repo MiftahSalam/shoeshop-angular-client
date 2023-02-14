@@ -34,5 +34,54 @@
         >{{ currentErrorAddReview.message }}</app-message
       >
     </div>
+    <form (ngSubmit)="submitHandler($event)" *ngIf="currentUser; else login">
+      <div class="my-4">
+        <strong>Rating</strong>
+        <select
+          [(ngModel)]="rating"
+          name="rating"
+          class="col-12 bg-light p-3 mt-2 border-0 rounded"
+          [value]=""
+        >
+          <option value="">Select. ..</option>
+          <option value="1">1 - Poor</option>
+          <option value="2">2 - Fair</option>
+          <option value="3">3 - Good</option>
+          <option value="4">4 - Very Good</option>
+          <option value="5">5 - Excellent</option>
+        </select>
+      </div>
+      <div class="my-4">
+        <strong>Comment</strong>
+        <textarea
+          row="3"
+          [(ngModel)]="comment"
+          name="comment"
+          class="col-12 bg-light p-3 mt-2 border-0 rounded"
+        ></textarea>
+      </div>
+      <div class="my-3">
+        <button
+          [disabled]="loadingAddReview"
+          class="col-12 bg-black border-0 p-3 rounded text-white"
+        >
+          SUBMIT
+        </button>
+      </div>
+    </form>
+    <ng-template #login>
+      <div class="my-3">
+        <app-message [variant]="'alert-warning'">
+          Please{{ " " }}
+          <a
+            [routerLink]="['/auth', 'login']"
+            [queryParams]="redirectUrl"
+            routerLinkActive="router-link-active"
+          >
+            " <strong>Login</strong> " </a
+          >{{ " " }} to write a review{{ " " }}
+        </app-message>
+      </div>
+    </ng-template>
   </div>
 </div>

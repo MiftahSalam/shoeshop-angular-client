@@ -9,6 +9,8 @@ import {
   GET_PRODUCTS_ALL_FIELDS,
   Review,
   GET_PRODUCT,
+  ReviewInput,
+  ADD_PRODUCT_REVIEW,
 } from '../../../model/graphql/product.graphql';
 import { User } from 'src/app/core/model/graphql/user.graphql';
 
@@ -17,6 +19,24 @@ import { User } from 'src/app/core/model/graphql/user.graphql';
 })
 export class ProductService {
   constructor(private apollo: Apollo) {}
+
+  addProductReview(data: ReviewInput): Observable<string | null> {
+    return from(
+      this.apollo.mutate({
+        mutation: ADD_PRODUCT_REVIEW,
+        variables: { data: data },
+        errorPolicy: 'all',
+      })
+    ).pipe(
+      map(({ loading, data }: any) => {
+        const value: string = data.createProductReview as string;
+
+        console.log(data);
+
+        return value;
+      })
+    );
+  }
 
   getProduct(id: string): Observable<Product | null> {
     return from(

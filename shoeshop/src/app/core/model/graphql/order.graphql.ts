@@ -104,6 +104,18 @@ const ORDER_ALL_FIELDS = gql`
   }
 `;
 
+export const GET_ORDERS_USER = gql`
+  query get_orders {
+    getUserOrders {
+      id
+      isPaid
+      paidAt
+      createdAt
+      totalPrice
+    }
+  }
+`;
+
 export const GET_ORDER = gql`
   query get_order($id: ID!) {
     getOrder(id: $id) {

@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
 })
 export class RatingComponent {
   @Input() value: number = 3;
-  @Input() text: number = 0;
+  @Input() text: number | null = null;
 }

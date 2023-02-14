@@ -27,6 +27,12 @@ export interface Review {
   created_date: string;
 }
 
+export interface ReviewInput {
+  productId: string;
+  rating: number;
+  comment: string;
+}
+
 const PRODUCT_COMMON_FIELDS = gql`
   fragment COMMON_FIELDS on Product {
     id
@@ -35,6 +41,12 @@ const PRODUCT_COMMON_FIELDS = gql`
     rating
     price
     numReviews
+  }
+`;
+
+export const ADD_PRODUCT_REVIEW = gql`
+  mutation add_review($data: ReviewInput!) {
+    createProductReview(input: $data)
   }
 `;
 

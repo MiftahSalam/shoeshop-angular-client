@@ -17,5 +17,43 @@
       Start Shopping
     </a>
   </div>
-  <ng-template #orderlist> </ng-template>
+  <ng-template #orderlist>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let order of orders; trackBy: trackByFn"
+            [ngClass]="order.isPaid ? 'alert-success' : 'alert-danger'"
+          >
+            <td>
+              <a
+                [routerLink]="['/order', order.id]"
+                routerLinkActive="router-link-active"
+                class="link"
+              >
+                {{ order.id }}
+              </a>
+            </td>
+            <td>{{ order.isPaid ? "Paid" : "Not Paid" }}</td>
+            <td>
+              {{
+                order.isPaid
+                  ? convertTime(order.paidAt!.toString())
+                  : convertTime(order.createdAt!.toString())
+              }}
+            </td>
+            <td>${{ order.totalPrice }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-template>
 </div>

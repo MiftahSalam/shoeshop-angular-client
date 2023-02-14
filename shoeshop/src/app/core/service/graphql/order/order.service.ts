@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { from, map, Observable } from 'rxjs';
+import { catchError, from, map, Observable, of, throwError } from 'rxjs';
 import {
   CREATE_ORDER,
   GET_ORDER,
+  GET_ORDERS_USER,
   OrderInput,
   OrderResponse,
   PaymentResultInput,
@@ -37,6 +38,27 @@ export class OrderService {
     );
   }
 
+  getOrdersUser(): Observable<OrderResponse[]> {
+    return from(
+      this.apollo
+        .query({
+          query: GET_ORDERS_USER,
+        })
+        .pipe(
+          map(({ loading, data }: any) => {
+            console.log('OrderService-getOrdersUser data', data);
+
+            const value: OrderResponse[] =
+              data.getUserOrders as OrderResponse[];
+            return value;
+          }),
+          catchError(() => {
+            return throwError(() => new Error('Orders not found'));
+          })
+        )
+    );
+  }
+
   getOrder(id: string): Observable<OrderResponse> {
     return from(
       this.apollo
@@ -50,6 +72,9 @@ export class OrderService {
 
             const value: OrderResponse = data.getOrder as OrderResponse;
             return value;
+          }),
+          catchError(() => {
+            return throwError(() => new Error('Order not found'));
           })
         )
     );
