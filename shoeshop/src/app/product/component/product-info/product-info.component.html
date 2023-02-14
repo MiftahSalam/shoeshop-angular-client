@@ -39,5 +39,11 @@
       </option>
     </select>
   </div>
-  <button class="round-black-btn" (click)="addToCart()">Add To Cart</button>
+  <button
+    *ngIf="product?.countInStock! > 0"
+    class="round-black-btn"
+    (click)="addToCart()"
+  >
+    Add To Cart
+  </button>
 </div>

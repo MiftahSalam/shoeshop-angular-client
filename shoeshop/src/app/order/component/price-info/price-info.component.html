@@ -1,0 +1,42 @@
+<!-- <div class="col-lg-3 d-flex align-items-end flex-column mt-5 subtotal-order"> -->
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <td>
+        <strong>Products</strong>
+      </td>
+      <td>${{ itemsPrice | number : "1.0-2" }}</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Shipping</strong>
+      </td>
+      <td>${{ shippingPrice | number : "1.0-2" }}</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Tax</strong>
+      </td>
+      <td>${{ taxPrice | number : "1.0-2" }}</td>
+    </tr>
+    <tr>
+      <td>
+        <strong>Total</strong>
+      </td>
+      <td>${{ totalPrice | number : "1.0-2" }}</td>
+    </tr>
+  </tbody>
+</table>
+<button
+  *ngIf="cartItems.length > 0"
+  type="submit"
+  (click)="placeOrderHandler()"
+>
+  PLACE ORDER
+</button>
+<div class="my-3 col-12">
+  <app-message *ngIf="currentError.message" [variant]="'alert-danger'">{{
+    currentError.message
+  }}</app-message>
+</div>
+<!-- </div> -->

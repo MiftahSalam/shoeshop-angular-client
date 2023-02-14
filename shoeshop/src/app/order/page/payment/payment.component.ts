@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { ErrorModel, getFormValidationErrors } from 'src/app/core/model/error';
 import { OrderService } from 'src/app/core/service/graphql/order/order.service';
-import { ROUTE_ORDER } from 'src/app/shared/constant';
+import { ROUTE_ORDER, ROUTE_ORDER_PLACE } from 'src/app/shared/constant';
 
 @Component({
   selector: 'app-payment',
@@ -37,7 +37,7 @@ export class PaymentComponent {
       }
     } else {
       this.orderService.savePaymentMethod(data.paymentMethod);
-      this.router.navigate([ROUTE_ORDER]);
+      this.router.navigate([ROUTE_ORDER, ROUTE_ORDER_PLACE]);
     }
   }
 }

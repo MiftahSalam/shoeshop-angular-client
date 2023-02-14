@@ -11,7 +11,12 @@ import {
 import { Router } from '@angular/router';
 
 import { Item, UpdateItem } from 'src/app/core/model/graphql/cart.graphql';
-import { ROUTE_AUTH, ROUTE_AUTH_LOGIN } from 'src/app/shared/constant';
+import {
+  ROUTE_AUTH,
+  ROUTE_AUTH_LOGIN,
+  ROUTE_ORDER,
+  ROUTE_ORDER_SHIPPING,
+} from 'src/app/shared/constant';
 
 @Component({
   selector: 'app-cart-items',
@@ -37,7 +42,10 @@ export class CartItemsComponent implements OnInit, OnChanges {
 
   checkoutHandler() {
     this.router.navigateByUrl(
-      ROUTE_AUTH + '/' + ROUTE_AUTH_LOGIN + '?redirect=shipping'
+      ROUTE_AUTH +
+        '/' +
+        ROUTE_AUTH_LOGIN +
+        `?redirect=${ROUTE_ORDER}/${ROUTE_ORDER_SHIPPING}`
     );
   }
 

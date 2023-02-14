@@ -1,0 +1,18 @@
+<app-header [hideSearch]="true"></app-header>
+<div class="container">
+  <order-ordeinfo
+    [cartItems]="cartItems"
+    [userInfo]="userInfo"
+    [shippingInfo]="shippingInfo"
+    [paymentMethod]="paymentMethod"
+  ></order-ordeinfo>
+  <div class="row order-products justify-content-between">
+    <order-ordeitem class="col-lg-8" [cartItems]="cartItems"></order-ordeitem>
+    <order-price-info
+      class="col-lg-3 d-flex align-items-end flex-column mt-5 subtotal-order"
+      [cartItems]="cartItems"
+      [currentError]="currentError"
+      (order)="createOrder($event)"
+    ></order-price-info>
+  </div>
+</div>

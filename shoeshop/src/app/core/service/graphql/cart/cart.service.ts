@@ -84,4 +84,8 @@ export class CartService {
       this.storedCartItems.next(cartItems);
     }
   }
+
+  clear() {
+    localStorage.removeItem(STORE_CART_ITEMS_KEY);
+  }
 }

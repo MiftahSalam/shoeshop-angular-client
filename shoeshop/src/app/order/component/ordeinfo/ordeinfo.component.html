@@ -1,0 +1,58 @@
+<div class="row order-detail">
+  <div class="col-lg-4 col-sm-4 mb-lg-4 mb-5 mb-sm-0">
+    <div class="row">
+      <div class="col-md-4 center">
+        <div class="alert-success order-box">
+          <i class="fas fa-truck-moving"></i>
+        </div>
+      </div>
+      <div class="col-md-8 center">
+        <h5>
+          <strong>Customer</strong>
+        </h5>
+        <p>{{ userInfo.name }}</p>
+        <p>{{ userInfo.email }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-4 col-sm-4 mb-lg-4 mb-5 mb-sm-0">
+    <div class="row">
+      <div class="col-md-4 center">
+        <div class="alert-success order-box">
+          <i class="fas fa-truck-moving"></i>
+        </div>
+      </div>
+      <div class="col-md-8 center">
+        <h5>
+          <strong>Order info</strong>
+        </h5>
+        <p>Shipping: {{ shippingInfo.Country }}</p>
+        <p>Payment method: {{ paymentMethod }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-1g-4 col-sm-4 mb-1g-4 mb-5 mb-sm-0">
+    <div class="row">
+      <div class="col-md-4 center">
+        <div class="alert-success order-box">
+          <i class="fas fa-map-marker-alt"></i>
+        </div>
+      </div>
+      <div class="col-md-8 center">
+        <h5>
+          <strong>Deliver to</strong>
+        </h5>
+        <p>
+          Address:{{ " " }}
+          {{
+            shippingInfo.City +
+              ", " +
+              shippingInfo.Address +
+              ", " +
+              shippingInfo.PostalCode
+          }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -39,10 +39,10 @@ export class ShippingComponent implements OnInit {
       }
     } else {
       this.orderService.saveShippingAddress({
-        address: data.address,
-        city: data.city,
-        country: data.country,
-        postalCode: data.postalCode,
+        Address: data.address,
+        City: data.city,
+        Country: data.country,
+        PostalCode: data.postalCode,
       });
       this.router.navigate([ROUTE_ORDER, ROUTE_ORDER_PAYMENT]);
     }

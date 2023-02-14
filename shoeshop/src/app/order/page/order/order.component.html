@@ -1,0 +1,144 @@
+<div class="container">
+  <app-header [hideSearch]="true"></app-header>
+  <app-loading *ngIf="loading; else message"></app-loading>
+  <ng-template #message>
+    <app-message
+      *ngIf="currentError.message !== ''; else order"
+      [variant]="'alert-danger'"
+      >{{ currentError.message }}</app-message
+    >
+  </ng-template>
+  <ng-template #order>
+    <div class="row order-detail">
+      <div class="col-1g-4 col-sm-4 mb-1g-4 mb-5 mb-sm-0">
+        <div class="row">
+          <div class="col-md-4 center">
+            <div class="alert-success order-box">
+              <i class="fas fa-user"></i>
+            </div>
+          </div>
+          <div class="col-md-8 center">
+            <h5>
+              <strong>Customer</strong>
+            </h5>
+            <p>{{ currentOrder.user.name }}</p>
+            <p>
+              <a href="{`mailto:${currentOrder.user.email}`}">
+                {{ currentOrder.user.email }}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-1g-4 col-sm-4 mb-1g-4 mb-5 mb-sm-0">
+        <div class="row">
+          <div class="col-md-4 center">
+            <div class="alert-success order-box">
+              <i class="fas fa-truck-moving"></i>
+            </div>
+          </div>
+          <div class="col-md-8 center">
+            <h5>
+              <strong>Order info</strong>
+            </h5>
+            <p>Shipping: {{ currentOrder.shippingAddress.Country }}</p>
+            <p>Pay method: {{ currentOrder.paymentMethod }}</p>
+            <div
+              *ngIf="currentOrder.isPaid; else notpaid"
+              class="bg-info p-2 col-12"
+            >
+              <p class="text-white text-center text-sm-start">
+                Paid on {{ convertTime(currentOrder.paidAt!.toString()) }}
+              </p>
+            </div>
+            <ng-template #notpaid>
+              <div class="bg-danger p-2 col-12">
+                <p class="text-white text-center text-sm-start">Not Paid</p>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="col-1g-4 col-sm-4 mb-1g-4 mb-5 mb-sm-0">
+        <div class="row">
+          <div class="col-md-4 center">
+            <div class="alert-success order-box">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+          </div>
+          <div class="col-md-8 center">
+            <h5>
+              <strong>Deliver to</strong>
+            </h5>
+            <p>
+              Address:{{ " " }} {{ currentOrder.shippingAddress.City }},
+              {{ currentOrder.shippingAddress.Address }},
+              {{ currentOrder.shippingAddress.PostalCode }}
+            </p>
+            <div
+              *ngIf="currentOrder.isDelivered; else notdeliver"
+              class="bg-info p-2 col-12"
+            >
+              <p class="text-white text-center text-sm-start">
+                Deliver on
+                {{ convertTime(currentOrder.deliveredAt!.toString()) }}
+              </p>
+            </div>
+            <ng-template #notdeliver>
+              <div class="bg-danger p-2 col-12">
+                <p class="text-white text-center text-sm-start">Not Deliver</p>
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row order-products justify-content-between">
+      <order-ordeitem
+        class="col-lg-8"
+        [cartItems]="currentOrder.items"
+      ></order-ordeitem>
+      <div
+        class="col-lg-3 d-flex align-items-end flex-column mt-5 subtotal-order"
+      >
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td>
+                <strong>Products</strong>
+              </td>
+              <td>${{ itemsPrice }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Shipping</strong>
+              </td>
+              <td>${{ currentOrder.shippingPrice }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Tax</strong>
+              </td>
+              <td>${{ currentOrder.taxPrice }}</td>
+            </tr>
+            <tr>
+              <td>
+                <strong>Total</strong>
+              </td>
+              <td>${{ currentOrder.totalPrice }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div *ngIf="!currentOrder.isPaid; else loadpay" class="col-12">
+          <app-loading *ngIf="loadingPay; else paybutton"></app-loading>
+          <ng-template #paybutton>
+            <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+          </ng-template>
+        </div>
+        <ng-template #loadpay>
+          <app-loading *ngIf="loadingPay"></app-loading>
+        </ng-template>
+      </div>
+    </div>
+  </ng-template>
+</div>
