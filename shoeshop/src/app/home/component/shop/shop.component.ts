@@ -1,63 +1,66 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { catchError, of, tap, throwError } from 'rxjs';
-// import { Apollo, gql } from 'apollo-angular';
-// import { Subscription } from 'rxjs';
-import { ErrorModel } from 'src/app/core/model/error';
 import {
-  GET_PRODUCTS_ALL_FIELDS,
-  Product,
-} from 'src/app/core/model/graphql/product.graphql';
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
+import { ErrorModel } from 'src/app/core/model/error';
+import { Product, Search } from 'src/app/core/model/graphql/product.graphql';
 import { ProductService } from 'src/app/core/service/graphql/product/product.service';
-
-// import {
-//   GET_PRODUCTS_ALL_FIELDS,
-//   ProductFilter,
-// } from '../../../core/model/graphql/product.graphql';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
 })
-export class ShopComponent implements OnInit /*, OnDestroy*/ {
-  // private querySubscription: Subscription = new Subscription();
+export class ShopComponent implements OnInit, OnChanges {
+  @Input() query: any;
+
   loading: boolean = true;
+  pages: number = 0;
+  page: number = 0;
+  keyword: string = '';
   currentError: ErrorModel = { message: '', path: '' };
   products: Product[] | null = new Array<Product>();
 
-  // constructor(private apollo: Apollo) {}
   constructor(private productService: ProductService) {}
 
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('ShopComponent-ngOnChanges query', this.query);
+
+    this.loadProduct();
+  }
+
   ngOnInit(): void {
+    console.log('ShopComponent-ngOnInit query', this.query);
+
+    this.loadProduct();
+  }
+
+  private loadProduct() {
+    console.log('ShopComponent-loadProduct query', this.query);
+    const curQuery: Search = this.query.query as Search;
+
+    this.page = curQuery.page || 1;
+    this.keyword = curQuery.keyword || '';
     this.loading = true;
+
     this.productService
-      .getProducts({ keyword: '', limit: 10, page: 0 })
-      // .pipe(
-      //   catchError((err) => {
-      //     console.error('errrrroooorrrr', err);
-      //     this.currentError = err;
-
-      //     return throwError(() => new Error(err));
-      //   })
-      // )
-      /*
-      .pipe(
-        tap(
-          (value) => {
-            console.log('dataaaaaa', value);
-            this.products = value;
-          },
-          catchError((err) => {
-            console.error('errrrroooorrrr', err);
-            this.currentError = err;
-
-            return of([]);
-          })
-        )
-      )
-      */
+      .getProducts({
+        keyword: this.keyword,
+        limit: curQuery.limit,
+        page: this.page,
+      })
       .subscribe(
         (data) => {
-          this.products = data;
+          console.log('ShopComponent-loadProduct data', data);
+          this.products = data?.products!;
+
+          if (this.products && curQuery.limit > 0) {
+            this.pages = Math.ceil(data?.totalData! / curQuery.limit);
+          } else {
+            this.pages = 1;
+          }
         },
         (err) => {
           console.error('currentError', this.currentError.message);
@@ -69,18 +72,11 @@ export class ShopComponent implements OnInit /*, OnDestroy*/ {
           this.loading = false;
         }
       );
-    // this.apollo
-    //   .watchQuery<any>({ query: GET_PRODUCTS_ALL_FIELDS })
-    //   .valueChanges.subscribe(({ data, loading }) => {
-    //     console.log(data);
-    //   });
   }
+
+  private calculatePages() {}
 
   trackByFn(index: number, item: Product) {
     return item.id;
-  }
-
-  ngOnDestroy(): void {
-    // this.querySubscription.unsubscribe;
   }
 }

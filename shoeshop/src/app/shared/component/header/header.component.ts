@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/core/model/graphql/user.graphql';
 import { AuthService } from 'src/app/core/service/auth/auth.service';
 import { CartService } from 'src/app/core/service/graphql/cart/cart.service';
+import { ROUTE_HOME_SEARCH } from '../../constant';
 
 @Component({
   selector: 'app-header',
@@ -12,8 +13,10 @@ import { CartService } from 'src/app/core/service/graphql/cart/cart.service';
 export class HeaderComponent implements OnInit /*, OnChanges*/ {
   @Input() hideSearch: boolean = false;
   @Input() hideSettings: boolean = false;
+
   currentUser: User = {} as User;
   cartsCount: number = 0;
+  keyword: string = '';
 
   constructor(
     private router: Router,
@@ -29,11 +32,10 @@ export class HeaderComponent implements OnInit /*, OnChanges*/ {
     this.cartsCount = curCart && curCart.length;
   }
 
-  // ngOnChanges(): void {
-  //   const curCart = this.cartService.getAllAvailableCartItems();
-  //   this.currentUser = this.authService.getAuth();
-  //   this.cartsCount = curCart && curCart.length;
-  // }
+  onSubmitHandler() {
+    console.log('HeaderComponent-onSubmitHandler keyword', this.keyword);
+    this.router.navigate([ROUTE_HOME_SEARCH, this.keyword]);
+  }
 
   logoutHandler() {
     this.authService.resetAuth();

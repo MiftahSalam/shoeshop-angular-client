@@ -65,11 +65,13 @@
               *ngIf="!hideSearch; else emptysearch"
               class="col-12 d-flex align-items-center"
             >
-              <form class="input-group">
+              <form (ngSubmit)="onSubmitHandler()" class="input-group">
                 <input
                   type="search"
                   class="form-control rounded search"
                   placeholder="search"
+                  name="keyword"
+                  [(ngModel)]="keyword"
                 />
                 <button type="submit" class="search-button">search</button>
               </form>
@@ -91,11 +93,13 @@
             *ngIf="!hideSearch; else emptysearch"
             class="col-md-6 col-8 d-flex align-items-center"
           >
-            <form class="input-group">
+            <form (ngSubmit)="onSubmitHandler()" class="input-group">
               <input
                 type="search"
                 class="form-control rounded search"
                 placeholder="search"
+                name="keyword"
+                [(ngModel)]="keyword"
               />
               <button type="submit" class="search-button">search</button>
             </form>

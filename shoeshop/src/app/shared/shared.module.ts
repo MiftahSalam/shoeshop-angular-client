@@ -9,6 +9,7 @@ import { LoadingComponent } from './component/loading/loading.component';
 import { MessageComponent } from './component/message/message.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { AnnouncementComponent } from './component/announcement/announcement.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { AnnouncementComponent } from './component/announcement/announcement.com
     NotFoundComponent,
     AnnouncementComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   exports: [
     HeaderComponent,
     FooterComponent,

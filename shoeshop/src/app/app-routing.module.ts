@@ -6,6 +6,8 @@ import {
   ROUTE_AUTH,
   ROUTE_CART,
   ROUTE_HOME,
+  ROUTE_HOME_PAGE,
+  ROUTE_HOME_SEARCH,
   ROUTE_ORDER,
   ROUTE_PRODUCT,
   ROUTE_PROFILE,
@@ -15,11 +17,6 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
-  },
-  {
-    path: ROUTE_HOME,
-    redirectTo: '',
-    pathMatch: 'full',
   },
   {
     path: ROUTE_PRODUCT,

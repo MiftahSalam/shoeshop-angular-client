@@ -4,6 +4,8 @@ export const STORE_ORDER_SHIPPING_KEY = 'shipping';
 export const STORE_ORDER_PAYMENT_KEY = 'payment';
 
 export const ROUTE_HOME = 'home';
+export const ROUTE_HOME_SEARCH = 'search';
+export const ROUTE_HOME_PAGE = 'page';
 export const ROUTE_PRODUCT = 'products';
 export const ROUTE_CART = 'cart';
 export const ROUTE_AUTH = 'auth';

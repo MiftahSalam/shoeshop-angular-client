@@ -9,6 +9,7 @@ import { ShopComponent } from './component/shop/shop.component';
 import { RouterModule } from '@angular/router';
 import { HomePageRoutingModule } from './home-routing.module';
 import { ProductListComponent } from './component/product-list/product-list.component';
+import { PaginationComponent } from './component/pagination/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ProductListComponent } from './component/product-list/product-list.comp
     ContactInfoComponent,
     ShopComponent,
     ProductListComponent,
+    PaginationComponent,
   ],
   imports: [CommonModule, RouterModule, SharedModule, HomePageRoutingModule],
   exports: [HomeComponent],

@@ -7,6 +7,11 @@ export interface Search {
   limit: number;
 }
 
+export interface Products {
+  products: Product[];
+  totalData: number;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -73,7 +78,10 @@ export const GET_PRODUCT = gql`
 export const GET_PRODUCTS_ALL_FIELDS = gql`
   query products($filter: Search) {
     getProducts(input: $filter) {
-      ...COMMON_FIELDS
+      products {
+        ...COMMON_FIELDS
+      }
+      totalData
     }
   }
   ${PRODUCT_COMMON_FIELDS}
