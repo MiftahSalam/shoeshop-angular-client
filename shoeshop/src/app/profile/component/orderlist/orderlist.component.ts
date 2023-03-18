@@ -1,30 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import moment from 'moment';
 
 import { ErrorModel } from 'src/app/core/model/error';
 import { OrderResponse } from 'src/app/core/model/graphql/order.graphql';
-import { OrderService } from 'src/app/core/service/graphql/order/order.service';
 
 @Component({
   selector: 'app-orderlist',
   templateUrl: './orderlist.component.html',
 })
 export class OrderlistComponent implements OnInit {
+  @Input() orders: OrderResponse[] = new Array<OrderResponse>();
+
   loading: boolean = false;
   currentError: ErrorModel = { message: '', path: '' };
-  orders: OrderResponse[] = new Array<OrderResponse>();
 
-  constructor(private orderService: OrderService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.orderService.getOrdersUser().subscribe({
-      next: (orders) => {
-        console.log('OrderlistComponent-ngOnInit orders', orders);
-        this.orders = orders;
-      },
-      error: (err) => {},
-    });
-  }
+  ngOnInit(): void {}
 
   convertTime(time: string): string {
     return moment(time).calendar();

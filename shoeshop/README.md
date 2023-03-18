@@ -1,27 +1,64 @@
-# Shoeshop
+# Simple Shoe Shop
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.4.
+A small and simple online shoe shop UI client developed with Angular and GraphQL ([check also React version](https://github.com/MiftahSalam/shoeshop-rest-mern-frontend)).
 
-## Development server
+Developed based on [this](https://www.youtube.com/watch?v=1NWBO8L81J8&list=PLE_Uj9ql8q9_MVzY0bMQPERz4Yulo3We4&index=1) youtube tutorial video
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+# Feature
 
-## Code scaffolding
+- Product browsing and searching
+- Review product (rating, comment)
+- Cart product
+- Order product
+- Order payment (paypal)
+- Order shipping
+- User management (Register, Login, Profile)
+- Authentication (JWT)
+- Pagination
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Demo
 
-## Build
+Not available yet
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# Stacks
 
-## Running unit tests
+- Angular
+- Apollo-Angular
+- ngx-paypal
+  <br /><br />
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Getting started
 
-## Running end-to-end tests
+## Install Nodejs
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+https://nodejs.org/en/download/
+<br /><br />
 
-## Further help
+## Clone/download project <br /><br />
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Install Dependencies
+
+From the project root, run (using npm):
+
+```
+npm install --save
+```
+
+## Run Project
+
+- make sure backend service is running
+- fill `environment.ts` and/or `environment.development.ts` to backend graphql service url
+- From the project root, run (using angular cli):
+
+```
+ npx -p @angular/cli ng serve
+```
+
+## Testing
+
+Not available yet
+
+## Todo
+
+- Create testing
+- Admin Page

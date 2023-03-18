@@ -40,7 +40,7 @@ export const USER_LOGIN = gql`
 `;
 
 export const USER_REGISTER = gql`
-  mutation register($data: UpdateProfile!) {
+  mutation register($data: Register!) {
     userRegister(input: $data) {
       id
       name

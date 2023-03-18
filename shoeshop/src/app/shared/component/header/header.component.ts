@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit /*, OnChanges*/ {
   @Input() hideSearch: boolean = false;
   @Input() hideSettings: boolean = false;
 
-  currentUser: User = {} as User;
+  currentUser: User | null = {} as User;
   cartsCount: number = 0;
   keyword: string = '';
 
@@ -28,7 +28,13 @@ export class HeaderComponent implements OnInit /*, OnChanges*/ {
     console.log('HeaderComponent-ngOnInit hideSearch', this.hideSearch);
 
     const curCart = this.cartService.getAllAvailableCartItems();
-    this.currentUser = this.authService.getAuth();
+    if (this.authService.checkAuth()) {
+      this.currentUser = this.authService.getAuth();
+    } else {
+      this.authService.resetAuth();
+      this.currentUser = null;
+    }
+
     this.cartsCount = curCart && curCart.length;
   }
 

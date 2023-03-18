@@ -51,7 +51,7 @@
               aria-selected="false"
             >
               Orders List
-              <span class="badge2">4</span>
+              <span class="badge2">{{orders.length}}</span>
               <!-- <span class="badge2">{orders ? orders.length : 0}</span> -->
             </button>
           </div>
@@ -75,7 +75,7 @@
         aria-labelledby="v-pills-profile"
       >
         <!-- <Orders orders={orders} loading={loading} error={error} /> -->
-        <app-orderlist></app-orderlist>
+        <app-orderlist [orders]="orders"></app-orderlist>
       </div>
     </div>
   </div>
